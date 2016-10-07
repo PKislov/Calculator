@@ -22,40 +22,6 @@ extern bool error;
 #include <locale.h>
 #endif
 
-
-//================ МАКРООПРЕДЕЛЕНИЯ ========================================================================
-
-// наибольшее из двух чисел
-#define MAX(a,b) ( ((a) > (b)) ? (a) : (b) )
-
-// наименьшее из двух чисел
-#define MIN(a,b) (((a) > (b)) ? (b) : (a))
-
-// модуль числа
-#define ABS(x) ((x) >= 0.) ? (x) : -1.*(x)
-
-// Физические константы:
-#define k_c		299.792458E6
-#define k_g		9.80665
-#define k_G		66.725985E-12
-#define k_Vm	22.4141E-3
-#define k_Na	602.2136736E21
-#define k_e		160.2177335E-21
-#define k_me	910.9389754E-33
-#define k_mp	1.67262311E-27
-#define k_mn	1.67492861E-27
-#define k_h		662.607554E-36
-#define k_k		13.8065812E-24
-#define k_R		8.3145107
-#define k_m0	1.256637061E-6
-#define k_e0	8.854187818E-12
-
-// Математические константы:
-#define M_E     2.71828182845904523536
-#define M_PI    3.14159265358979323846
-
-
-
 double ToRadians (double corner)
 {
     return M_PI * corner / 180.0;
