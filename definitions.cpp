@@ -17,11 +17,6 @@ extern bool error;
 #include <ctype.h>
 #include <stdlib.h>
 #include <cmath>
-#ifdef WINDOWS
-#include <wchar.h>
-#include <locale.h>
-#endif
-
 
 
 double ToRadians (double corner)
