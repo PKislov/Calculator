@@ -22,6 +22,8 @@ extern bool error;
 #include <locale.h>
 #endif
 
+
+
 double ToRadians (double corner)
 {
     return M_PI * corner / 180.0;
@@ -128,82 +130,6 @@ inline int  rputcstd (int c)
     return putc (c, stdout);
 }
 
-typedef class ConvLetter {
-public:
-        char    win1251;
-        int             unicode;
-        ConvLetter (char ch, int i)
-        {
-            win1251 = ch; unicode = i;
-        }
-} Letter;
-
-
-static Letter g_letters[] = {
-    ConvLetter(0x82, 0x201A), // SINGLE LOW-9 QUOTATION MARK
-         ConvLetter(0x83, 0x0453), // CYRILLIC SMALL LETTER GJE
-         ConvLetter(0x84, 0x201E), // DOUBLE LOW-9 QUOTATION MARK
-         ConvLetter(0x85, 0x2026), // HORIZONTAL ELLIPSIS
-         ConvLetter(0x86, 0x2020), // DAGGER
-         ConvLetter(0x87, 0x2021), // DOUBLE DAGGER
-         ConvLetter(0x88, 0x20AC), // EURO SIGN
-         ConvLetter(0x89, 0x2030), // PER MILLE SIGN
-         ConvLetter(0x8A, 0x0409), // CYRILLIC CAPITAL LETTER LJE
-         ConvLetter(0x8B, 0x2039), // SINGLE LEFT-POINTING ANGLE QUOTATION MARK
-         ConvLetter(0x8C, 0x040A), // CYRILLIC CAPITAL LETTER NJE
-         ConvLetter(0x8D, 0x040C), // CYRILLIC CAPITAL LETTER KJE
-         ConvLetter(0x8E, 0x040B), // CYRILLIC CAPITAL LETTER TSHE
-         ConvLetter(0x8F, 0x040F), // CYRILLIC CAPITAL LETTER DZHE
-         ConvLetter(0x90, 0x0452), // CYRILLIC SMALL LETTER DJE
-         ConvLetter(0x91, 0x2018), // LEFT SINGLE QUOTATION MARK
-         ConvLetter(0x92, 0x2019), // RIGHT SINGLE QUOTATION MARK
-         ConvLetter(0x93, 0x201C), // LEFT DOUBLE QUOTATION MARK
-         ConvLetter(0x94, 0x201D), // RIGHT DOUBLE QUOTATION MARK
-         ConvLetter(0x95, 0x2022), // BULLET
-         ConvLetter(0x96, 0x2013), // EN DASH
-         ConvLetter(0x97, 0x2014), // EM DASH
-         ConvLetter(0x99, 0x2122), // TRADE MARK SIGN
-         ConvLetter(0x9A, 0x0459), // CYRILLIC SMALL LETTER LJE
-         ConvLetter(0x9B, 0x203A), // SINGLE RIGHT-POINTING ANGLE QUOTATION MARK
-         ConvLetter(0x9C, 0x045A), // CYRILLIC SMALL LETTER NJE
-         ConvLetter(0x9D, 0x045C), // CYRILLIC SMALL LETTER KJE
-         ConvLetter(0x9E, 0x045B), // CYRILLIC SMALL LETTER TSHE
-         ConvLetter(0x9F, 0x045F), // CYRILLIC SMALL LETTER DZHE
-         ConvLetter(0xA0, 0x00A0), // NO-BREAK SPACE
-         ConvLetter(0xA1, 0x040E), // CYRILLIC CAPITAL LETTER SHORT U
-         ConvLetter(0xA2, 0x045E), // CYRILLIC SMALL LETTER SHORT U
-         ConvLetter(0xA3, 0x0408), // CYRILLIC CAPITAL LETTER JE
-         ConvLetter(0xA4, 0x00A4), // CURRENCY SIGN
-         ConvLetter(0xA5, 0x0490), // CYRILLIC CAPITAL LETTER GHE WITH UPTURN
-         ConvLetter(0xA6, 0x00A6), // BROKEN BAR
-         ConvLetter(0xA7, 0x00A7), // SECTION SIGN
-         ConvLetter(0xA8, 0x0401), // CYRILLIC CAPITAL LETTER IO
-         ConvLetter(0xA9, 0x00A9), // COPYRIGHT SIGN
-         ConvLetter(0xAA, 0x0404), // CYRILLIC CAPITAL LETTER UKRAINIAN IE
-         ConvLetter(0xAB, 0x00AB), // LEFT-POINTING DOUBLE ANGLE QUOTATION MARK
-         ConvLetter(0xAC, 0x00AC), // NOT SIGN
-         ConvLetter(0xAD, 0x00AD), // SOFT HYPHEN
-         ConvLetter(0xAE, 0x00AE), // REGISTERED SIGN
-         ConvLetter(0xAF, 0x0407), // CYRILLIC CAPITAL LETTER YI
-         ConvLetter(0xB0, 0x00B0), // DEGREE SIGN
-         ConvLetter(0xB1, 0x00B1), // PLUS-MINUS SIGN
-         ConvLetter(0xB2, 0x0406), // CYRILLIC CAPITAL LETTER BYELORUSSIAN-UKRAINIAN I
-         ConvLetter(0xB3, 0x0456), // CYRILLIC SMALL LETTER BYELORUSSIAN-UKRAINIAN I
-         ConvLetter(0xB4, 0x0491), // CYRILLIC SMALL LETTER GHE WITH UPTURN
-         ConvLetter(0xB5, 0x00B5), // MICRO SIGN
-         ConvLetter(0xB6, 0x00B6), // PILCROW SIGN
-         ConvLetter(0xB7, 0x00B7), // MIDDLE DOT
-         ConvLetter(0xB8, 0x0451), // CYRILLIC SMALL LETTER IO
-         ConvLetter(0xB9, 0x2116), // NUMERO SIGN
-         ConvLetter(0xBA, 0x0454), // CYRILLIC SMALL LETTER UKRAINIAN IE
-         ConvLetter(0xBB, 0x00BB), // RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK
-         ConvLetter(0xBC, 0x0458), // CYRILLIC SMALL LETTER JE
-         ConvLetter(0xBD, 0x0405), // CYRILLIC CAPITAL LETTER DZE
-         ConvLetter(0xBE, 0x0455), // CYRILLIC SMALL LETTER DZE
-         ConvLetter(0xBF, 0x0457) // CYRILLIC SMALL LETTER YI
-
-};
-
 int convert_utf8_to_windows1251(const char* utf8, char* windows1251, size_t n)
 {
     int i = 0;
@@ -267,7 +193,6 @@ NEXT_LETTER:
     return 1;
 }
 
-#define LINE_MAX 1024
 #endif
 
 // Выводит на консоль строку с русским текстом:
@@ -275,9 +200,12 @@ int rprin (const char * const s)
 {
     #ifdef WINDOWS
     const char *p = s;
-    char output[LINE_MAX] = {0};
-    convert_utf8_to_windows1251(p, output, LINE_MAX); // перевести строку из кодировки UTF8 в С1251
+    const int len = strlen(s) * 7; // один символ utf8 занимает до 6 байт, примем с запасом
+    char *output = new char[len];
+    if (len) output[len-1] = '\0';
+    convert_utf8_to_windows1251(p, output, len); // перевести строку из кодировки UTF8 в С1251
     for (p = output; *p; rputcstd (*(p++)));
+    delete output;
     return p-output;
     #else
     return printf(s);
